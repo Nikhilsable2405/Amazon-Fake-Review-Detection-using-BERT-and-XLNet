@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Fake Review Detection</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../static/assets/img/acm2.png" rel="icon">
+  <link href="../static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../static/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="../static/assets/css/main.css" rel="stylesheet">
+
+</head>
+
+<body class="index-page">
+
+  <!--Header Section -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="#" class="logo d-flex align-items-center">
+        <h1 class="sitename">Fake Review Detection</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#head" class="active">Home</a></li>
+          <li><a href="#about" >About</a></li>
+          <li><a href="#steps">Guide</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- main Section-->
+  <main class="main">
+
+    <!-- Head Section -->
+    <section id="head" class="head section dark-background">
+
+          <div class="main-container">
+            <h2 class="animate__animated animate__fadeInDown">Welcome to Fake Review Detection</h2>
+            <p class="animate__animated animate__fadeInUp">Know about the Real reviews of any product.We Spot Fake, You Get Real.</p>
+            <p class="animate__animated animate__fadeInUp"></p>
+
+            <button class="btn-get-started animate__animated animate__fadeInUp scrollto" onclick="location.href='#Searching'" >Get Started</button>
+          </div>
+
+    </section><!-- /head Section -->
+
+    <!-- Searching Section-->
+     <section id = "Searching" class="searching section"> 
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Search</h2>
+        <p>Know about the Product</p>
+      </div><!-- End Section Title -->
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg content" data-aos="fade-up" data-aos-delay="100">
+            <p> Enter The Product URL You Want To Search </p>
+            <form action="/BERT.html" method="post" class="php-email-form" id="#myForm">
+              <div class="row gy-4">
+                  <div class="col-md-12">
+                      <input type="text" class="form-control" id="url" name="url" placeholder="Enter product URL Here...!" required="">
+                  </div>
+                  <div class="col-md-12 text-center">
+                      <div class="loading d-none">Loading...</div>
+                      <div class="error-message d-none"></div>
+                      <div class="sent-message d-none">Message sent successfully!</div>
+                      <button type="submit">Submit</button>
+                  </div>
+              </div>
+          </form>
+          <div id="response"></div>
+          <!-- Add this inside your HTML body -->
+
+
+          </div>
+        </div>
+      </div>
+     </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>About</h2>
+        <p>About The Application</p>
+      </div>
+      <!-- End Section Title -->
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <p>
+              Online marketplaces such as Amazon allow people to share their experiences about purchased  products using textual comments known as product reviews. Online reviews from previous  consumers are key information sources for consumers and marketers. Fake product reviews on e-commerce websites mislead consumers and undermine trust in online marketplaces. Detecting  and eliminating fake reviews is essential to ensure genuine feedback and maintain the platform's  integrity.
+            </p>
+            <!-- <ul>
+              <li><i class="bi bi-check2-circle"></i> <span>Graphic Designing</span></li>
+            </ul>-->
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <img class="rounded " src="../static/../static/assets/img/online-shopping.jpg"/>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /About Section -->
+
+    <!-- Step Section -->
+    <section id="steps" class="about section">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>How To</h2>
+        <p>Check Out These Steps</p>
+      </div>
+      <!-- End Section Title -->
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <img class="rounded " src="../static/assets/img/index-page/1.png"/>
+          </div>
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <p>
+              1. Our Home Page welcomes you with an easy-to-use interface.
+            </p>
+            <!-- <ul>
+              <li><i class="bi bi-check2-circle"></i> <span>Graphic Designing</span></li>
+            </ul>-->
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row gy-4">
+          
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <p>
+              2. Copy the URL of the product page from Amazon (or other supported sites) that you wish to analyze. Paste it into the provided input box on our website.
+            </p>
+            <!-- <ul>
+              <li><i class="bi bi-check2-circle"></i> <span>Graphic Designing</span></li>
+            </ul>-->
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <img class="rounded " src="../static/assets/img/index-page/2.png"/>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <img class="rounded " src="../static/assets/img/index-page/3.png"/>
+          </div>
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <p>
+              3. Hit the "Analyze- button to start the review detection process. Our advanced AI algorithms will begin scanning and evaluating the reviews for authenticity.
+            </p>
+            <!-- <ul>
+              <li><i class="bi bi-check2-circle"></i> <span>Graphic Designing</span></li>
+            </ul>-->
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row gy-4">
+          
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <p>
+              4. Within a few seconds, see the results! We'll display a detailed breakdown of our analysis, including the percentage of fake and genuine reviews, and provide an overall grade (A-F) for the products review quality
+            </p>
+            <!-- <ul>
+              <li><i class="bi bi-check2-circle"></i> <span>Graphic Designing</span></li>
+            </ul>-->
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <img class="rounded " src="../static/assets/img/index-page/4.png"/>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <img class="rounded " src="../static/../static/assets/img/index-page/5.png"/>
+          </div>
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <p>
+              5. Use our insights to decide whether to proceed with your purchase. Feel confident knowing you are making a smarter choice!
+            </p>
+            <!-- <ul>
+              <li><i class="bi bi-check2-circle"></i> <span>Graphic Designing</span></li>
+            </ul>-->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /About Section -->
+
+  </main>
+  <!-- /main Section-->
+
+  <!-- Footer Section -->
+  <footer id="footer" class="footer dark-background">
+    <div class="container">
+      <h3 class="sitename">Fake Review Detection</h3>
+      <div class="container">
+        <h3 class="credits">Designed by <strong>Nikhil Sable</strong></h3>
+      </div>
+    </div>
+  </footer>
+  <!-- /Footer Section -->
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div class="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="../static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src="../static/assets/vendor/php-email-form/validate.js"></script>  -->
+  <script src="../static/assets/vendor/aos/aos.js"></script>
+  <script src="../static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../static/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="../static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="../static/assets/js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+
+</html>

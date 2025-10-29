@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results Page</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="../static/assets/img/favicon.png" rel="icon">
+  <link href="../static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../static/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+  <!-- Main CSS File -->
+  <link href="../static/assets/css/main.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+</head>
+
+<body class="service-details-page">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <h1 class="sitename">Fake Review Detection</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#Head" class="active">Home</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Page Title -->
+    <div class="page-title dark-background">
+      <div class="container position-relative">
+        <h1>Detailed Product Analysis</h1>
+        <p>- Analysis of the Given Product -</p>
+      </div>
+    </div>
+
+    <!-- Service Details Section -->
+    <section id="service-details" class="service-details section">
+      <div class="container">
+        <div class="row gy-5">
+          <!-- Sidebar with Algorithm List -->
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-box">
+              <h4>Algorithms List</h4>
+              <div class="services-list">
+                <a href="../BERT.html" id="bert" class="active"><i class="bi bi-arrow-right-circle"></i><span>BERT</span></a>
+                <a href="../XLnet.html" id="XLnet"><i class="bi bi-arrow-right-circle"></i><span>XLnet</span></a>
+                 <!--<a href="../detailed-view.html" id="overall-accuracy"><i class="bi bi-arrow-right-circle"></i>Overall Accuracy<span></span></a>
+                Add IDs to all the links similarly -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Content Area -->
+          <div class="col-lg-8 ps-lg-5 dynamic" data-aos="fade-up" data-aos-delay="200">
+            <div id="dynamic-content">
+              <div class="container">
+                <div class="result">
+                  <!-- Display the result -->
+                  {% if results %}
+                  <div class="alert alert-info mt-4">
+                    <strong>Bert Algorithm Results</strong>
+                  </div>
+                
+                  <div>
+                       <!-- Doughnut Chart for Real vs Fake Review Accuracy -->
+                      <h2 style='text-align:center;'>Accuracy Visualization (Real vs Fake)</h2>
+                      <canvas id="accuracyChart"></canvas>
+                      <div class="alert alert-info mt-4">
+                        <p><strong>Product Name: </strong>{{ product_name if product_name else "Not Available" }}</p>
+                      </div>
+                      <div class="review-counts mt-4">
+                        <p><strong>Real Reviews: </strong> {{ real_count if real_count is not none else "N/A" }}</p>
+                        <p><strong>Fake Reviews: </strong> {{ fake_count if fake_count is not none else "N/A" }}</p>
+                      </div>
+                      <p>Status: {{ results.status_message }}</p>
+                      <div class="alert alert-info mt-4 {% if results.grade != 'No reviews' %}grade-{{ results.grade.lower() }}{% else %}grade-NoReviews{% endif %}">
+                        <strong>Grade: {{ results.grade }}</strong>
+                    </div>
+                     <!-- Real and Fake Review Counts -->
+                    <form action="{{ url_for('XLnet_view') }}" method="POST">
+                      <input type="hidden" name="url" value="{{ url }}">
+                      <button type="submit" class="btn btn-primary mt-3">Analyze with XLNet</button>
+                    </form>
+                    
+                                       
+                  </div>
+                  
+                  {% else %}
+                  <p>No results available.</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+    <script>
+        // Prepare data for the doughnut chart
+        var realCount = {{ real_count }} || 0;
+        var fakeCount = {{ fake_count }} || 0;
+        var totalReviews = realCount + fakeCount;
+
+        // Prevent division by zero
+        var realPercentage = totalReviews > 0 ? (realCount / totalReviews) * 100 : 0;
+        var fakePercentage = totalReviews > 0 ? (fakeCount / totalReviews) * 100 : 0;
+
+
+        // Create the doughnut chart using Chart.js
+        var ctx = document.getElementById('accuracyChart').getContext('2d');
+        
+        var accuracyChart = new Chart(ctx, {
+            type: 'doughnut',  // Doughnut chart
+            data: {
+                labels: ['Real Reviews', 'Fake Reviews'],  // Labels for chart segments
+                datasets: [{
+                    data: [realPercentage, fakePercentage],  // Data points: Real and Fake percentages
+                    backgroundColor: ['#4caf50', '#f44336'],  // Colors for each segment (green for real, red for fake)
+                    borderColor: ['#ffffff', '#ffffff'],  // Border color for segments
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                var count = tooltipItem.raw;
+                                var percentage = ((count / totalReviews) * 100).toFixed(2);
+                                return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(2) + '%';  // Format the tooltip to show percentage
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer id="footer" class="footer dark-background">
+    <div class="container">
+      <h3 class="sitename">Fake Review Detection</h3>
+      <div class="container">
+        <h3 class="credits">Designed by <strong>Nikhil Sable</strong></h3>
+      </div>
+    </div>
+  </footer>
+  <!-- /Footer Section -->
+
+  <!-- Scroll Top Button -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div class="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="../static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/assets/vendor/php-email-form/validate.js"></script>
+  <script src="../static/assets/vendor/aos/aos.js"></script>
+  <script src="../static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../static/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="../static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="../static/assets/js/main.js"></script>
+</body>
+</html>

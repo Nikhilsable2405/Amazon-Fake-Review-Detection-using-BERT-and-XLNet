@@ -1,0 +1,25 @@
+# Python cache and virtual environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+
+# Virtual environment folders
+venv/
+env/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# VSCode or IDE settings
+.vscode/
+.idea/
+
+# Model checkpoints and data
+*.csv
+*.h5
+*.pt
+*.pkl
+model_checkpoints/
